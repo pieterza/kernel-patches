@@ -5,11 +5,10 @@ e100_set_duplex(dev, ecmd->duplex == DUPLEX_HALF ? half : full);
 e100_set_speed(dev, ecmd->speed == SPEED_10 ? 10: 100);
 }
 -
-+ //Honor ethtool phy address parameter, which was simply
-discarded before this.
++ //Honor ethtool phy address parameter, which was simply discarded before this.
 + if (ecmd->phy_address <= 31)
-+ mdio_phy_addr = ecmd->phy_address;
++   mdio_phy_addr = ecmd->phy_address;
 + else if (ecmd->phy_address == 32)
-+ return -ENODEV;
++   return -ENODEV;
 return 0;
 }
